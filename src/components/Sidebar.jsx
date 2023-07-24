@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 export default function Sidebar(props) {
   const noteElements = props.notes.map((note, index) => (
@@ -10,7 +9,15 @@ export default function Sidebar(props) {
         }`}
         onClick={() => props.setCurrentNoteId(note.id)}
       >
-        <h4 className="text-snippet">Note {index + 1}</h4>
+        <h4 className="text-snippet">
+          {note.body.split("\n")[0].replace(/#/g, "").trim()}
+        </h4>
+        <button
+          className="delete-btn"
+          onClick={() => props.deleteNotes(note.id)}
+        >
+          <i className="gg-trash trash-icon"></i>
+        </button>
       </div>
     </div>
   ));
